@@ -44,24 +44,24 @@ We use 44 clinical variables: 15 vital parameters and 29 laboratory parameters. 
 
 ## Use
 
-1. Install dependencies. Install by running ``pip install -r requirements.txt``. Python version used is 3.8.10.
+1. Clone this repository to your local machine. To clone it from the command line run ```git clone https://github.com/acampillos/sepsis-prediction.git```
 
-2. Install PostgreSQL locally. See installation guide for your system in [PostgreSQL downloads](https://www.postgresql.org/download/). PostgreSQL v12.12 and Ubuntu 20.04.4 were used in the project.
+2. Install dependencies. Install by running ``pip install -r requirements.txt``. Python version used is 3.8.10.
 
-3. Accessing and building MIMIC-III. For more details see [MIT Getting Started documentation](https://mimic.mit.edu/docs/gettingstarted/). Steps are:
+3. Install PostgreSQL locally. See installation guide for your system in [PostgreSQL downloads](https://www.postgresql.org/download/). PostgreSQL v12.12 and Ubuntu 20.04.4 were used in the project.
+
+4. Accessing and building MIMIC-III. For more details see [MIT Getting Started documentation](https://mimic.mit.edu/docs/gettingstarted/). Steps are:
    1. Become a credentialed user on PhysioNet (https://physionet.org/login/?next=/settings/credentialing/).
    2. Complete required training (https://physionet.org/content/mimiciii/view-required-trainings/1.4/#1).
    3. Sign the required data use agreement (https://physionet.org/login/?next=/sign-dua/mimiciii/1.4/).
    4. Download files from Files section in MIMIC-III website (https://physionet.org/content/mimiciii/1.4/).
    5. Build MIMIC-III locally (https://github.com/MIT-LCP/mimic-code/tree/main/mimic-iii/buildmimic/postgres).
 
-4. Clone this repository to your local machine. To clone it from the command line run ```git clone https://github.com/acampillos/sepsis-prediction.git```
-
-4. Extract and filter data from MIMIC-III using [Moor et al. scripts](https://github.com/BorgwardtLab/mgp-tcn#query-and-real-world-experiments). 
+5. Extract and filter data from MIMIC-III using [Moor et al. scripts](https://github.com/BorgwardtLab/mgp-tcn#query-and-real-world-experiments). 
    1. Download [mgp-tcn repository](https://github.com/BorgwardtLab/mgp-tcn), install its requirements and run ```make query``` inside the project. This step might take several hours.
    2. Once the query has finished, move all files in ```output``` folder to this project's ```output``` folder.
 
-5. Run experiments. Requires creating an folder named ```input``` in the base project folder. Available experiments are in the following table.
+6. Run experiments. Requires creating an folder named ```input``` in the base project folder. Available experiments are in the following table.
 
 Model type                   | Experiment    | Command
 ---------------------------- | ------------- | -------
