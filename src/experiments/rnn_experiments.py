@@ -1,3 +1,5 @@
+import sys
+
 import skopt
 from skopt.space import Real, Categorical, Integer
 from skopt import gp_minimize
@@ -236,6 +238,14 @@ if __name__ == '__main__':
     models_names = ['baseline_lstm', 'baseline_gru', 'lstm_stacked_denses', 'gru_stacked_denses', 'lstm_stacked_denses_dropout', 'gru_stacked_denses_dropout', 'lstm_stacked', 'gru_stacked', 'lstm_stacked_denses_stacked_dropout', 'gru_stacked_denses_stacked_dropout']
     build_model_functions = [build_lstm_baseline, build_gru_baseline, build_lstm_denses_stacked, build_gru_denses_stacked, build_lstm_denses_stacked_dropout, build_gru_denses_stacked_dropout, build_lstm_stacked, build_gru_stacked, build_lstm_stacked_denses_stacked_dropout, build_gru_stacked_denses_stacked_dropout]
 
-    # hyperparameter_optimization_experiments()
-    # test_models(models_names, build_model_functions, save_scores_to_file=True, early_stopping_monitor='val_loss')
-    # best_hyperparameters_to_df(models_names, build_model_functions)
+    if sys.argv[1:]:
+
+        if sys.argv[1]=='tuning':
+            hyperparameter_optimization_experiments()
+            best_hyperparameters_to_df(models_names, build_model_functions)
+        
+        elif sys.argv[1]=='test':
+            test_models(models_names, build_model_functions, save_scores_to_file=True, early_stopping_monitor='val_auprc')
+    
+    else:
+        print('Please specify the experiment to run as an argument: tuning or test')

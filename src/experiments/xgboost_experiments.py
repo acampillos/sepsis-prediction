@@ -8,6 +8,7 @@ import pandas as pd
 import logging
 import csv
 import time
+import json
 
 import xgboost as xgb
 
@@ -350,8 +351,6 @@ def test_models_experiments():
 
 if __name__ == '__main__':
 
-    # print(sys.argv[1])
-
     vitals_features = ['sysbp', 'diabp', 'meanbp', 'resprate', 'heartrate',
        'spo2_pulsoxy', 'tempc', 'cardiacoutput', 'tvset', 'tvobserved',
        'tvspontaneous', 'peakinsppressure', 'totalpeeplevel', 'o2flow',
@@ -364,27 +363,35 @@ if __name__ == '__main__':
         'pco2_bloodgas', 'so2_bloodgas', 'troponin_t']
     all_features = vitals_features + labs_features
 
-    # hyperparameters_optimization_experiments()
-    # _, models, evals_result = test_models_experiments()
+    if sys.argv[1:]:
+
+        if sys.argv[1]=='tuning':
+            hyperparameters_optimization_experiments()
+
+        elif sys.argv[1]=='test':
+            _, models, evals_result = test_models_experiments()
     
-    # baseline_evals_result = evals_result[::2]
-    # bo_evals_result = evals_result[1::2]
+            baseline_evals_result = evals_result[::2]
+            bo_evals_result = evals_result[1::2]
 
-    # splits = [0,1,2]
-    # for split in splits:
-    #     with open(f'output/xgboost/evals_split_{split}_model_baseline.json', 'w') as f:
-    #         json.dump(baseline_evals_result[split], f)
-    #     with open(f'output/xgboost/evals_split_{split}_model_tuned.json', 'w') as f:
-    #         json.dump(bo_evals_result[split], f)
+            splits = [0,1,2]
+            for split in splits:
+                with open(f'output/xgboost/evals_split_{split}_model_baseline.json', 'w') as f:
+                    json.dump(baseline_evals_result[split], f)
+                with open(f'output/xgboost/evals_split_{split}_model_tuned.json', 'w') as f:
+                    json.dump(bo_evals_result[split], f)
 
-    # plot_models_importances(models)
+            # plot_models_importances(models)
 
-    # average_importances = get_average_importances(models, all_features)
+            average_importances = get_average_importances(models, all_features)
 
-    # rows = []
-    # for importance_type, acum_scores in average_importances.items():
-    #     for feature, score in acum_scores.items():
-    #         row = [importance_type, feature, score]
-    #         rows.append(row)
-    # average_importances_df = pd.DataFrame(rows, columns=['importance_type', 'feature', 'score'])
-    # average_importances_df.to_csv('output/xgboost/feature_importances.csv', index=False)
+            rows = []
+            for importance_type, acum_scores in average_importances.items():
+                for feature, score in acum_scores.items():
+                    row = [importance_type, feature, score]
+                    rows.append(row)
+            average_importances_df = pd.DataFrame(rows, columns=['importance_type', 'feature', 'score'])
+            average_importances_df.to_csv('output/xgboost/feature_importances.csv', index=False)
+
+    else:
+        print('Please specify the experiment to run as an argument: tuning or test')
