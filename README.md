@@ -54,7 +54,7 @@ We use 44 clinical variables: 15 vital parameters and 29 laboratory parameters. 
    1. Become a credentialed user on PhysioNet (https://physionet.org/login/?next=/settings/credentialing/).
    2. Complete required training (https://physionet.org/content/mimiciii/view-required-trainings/1.4/#1).
    3. Sign the required data use agreement (https://physionet.org/login/?next=/sign-dua/mimiciii/1.4/).
-   4. Download files from Files section in MIMIC-III website (https://physionet.org/content/mimiciii/1.4/).
+   4. Download files from Files section in MIMIC-III website (https://physionet.org/content/mimiciii/1.4/#files).
    5. Build MIMIC-III locally (https://github.com/MIT-LCP/mimic-code/tree/main/mimic-iii/buildmimic/postgres).
 
 5. Extract and filter data from MIMIC-III using [Moor et al. scripts](https://github.com/BorgwardtLab/mgp-tcn#query-and-real-world-experiments). 
