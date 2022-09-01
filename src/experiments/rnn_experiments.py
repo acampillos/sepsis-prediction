@@ -11,7 +11,7 @@ import inspect
 import pandas as pd
 
 # Models
-from ..models.rnn import *
+from src.models.rnn import *
 
 # Training
 from src.train_rnn import train_rnn, test_rnn

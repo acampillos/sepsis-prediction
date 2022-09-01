@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.append(os.getcwd() + '/src')
+
 import pandas as pd
 
 import logging
@@ -11,11 +16,11 @@ from bayes_opt.logger import JSONLogger
 from bayes_opt.event import Events
 
 # Plots
-from ..visualization.util import get_average_importances
-from ..visualization.plots import plot_optimizer_search_evolution, plot_models_importances 
+from src.visualization.util import get_average_importances
+from src.visualization.plots import plot_optimizer_search_evolution, plot_models_importances 
 
 # Training
-from train_xgboost import train_model, test_model
+from src.train_xgboost import train_model, test_model
 
 
 def bayesian_optimization_xgboost(full_labvitals, features, split, model_params, model_train_function, init_points=10, n_iter=20, weight=None):
@@ -343,9 +348,9 @@ def test_models_experiments():
 
 
 
-
-
 if __name__ == '__main__':
+
+    # print(sys.argv[1])
 
     vitals_features = ['sysbp', 'diabp', 'meanbp', 'resprate', 'heartrate',
        'spo2_pulsoxy', 'tempc', 'cardiacoutput', 'tvset', 'tvobserved',

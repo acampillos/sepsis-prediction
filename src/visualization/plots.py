@@ -7,7 +7,7 @@ from scipy import stats
 import random
 
 
-from util import get_average_importances
+from .util import get_average_importances
 
 
 # Static variables related
