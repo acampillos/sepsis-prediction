@@ -42,7 +42,7 @@ We create multiple gradient boosting and recurrent neural networks models (using
 We use 44 clinical variables: 15 vital parameters and 29 laboratory parameters. For XGBoost models we obtain 309 variables after encoding (including each time series length).
 
 
-## Usage
+## Use
 
 1. Install dependencies. Install by running ``pip install -r requirements.txt``. Python version used is 3.8.10.
 
